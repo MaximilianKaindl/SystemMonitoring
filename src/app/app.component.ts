@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { MqttService, IMqttMessage } from 'ngx-mqtt';
 import { SystemInfo } from './contracts/systeminfo';
 import { JsonPipe } from '@angular/common';
+import { DatadumpService } from './services/datadump.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ export class AppComponent implements OnInit {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private mqttService: MqttService
+    private mqttService: MqttService,
+    private datadump: DatadumpService
   ) {
     this.initializeApp();
   }
@@ -50,7 +52,14 @@ export class AppComponent implements OnInit {
         });
       }
 
-    });
+      let systemInfo = this.datadump.data.find(s => s.Id == infos.Id)
 
+      if(systemInfo == undefined)
+        this.datadump.data.push(infos);
+      else {
+        systemInfo.Cpu = infos.Cpu;
+        systemInfo.Ram = infos.Ram;
+      }
+    });
   }
 }

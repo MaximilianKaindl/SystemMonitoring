@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MqttModule, IMqttServiceOptions } from 'ngx-mqtt';
+import { DatadumpService } from './services/datadump.service';
 
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: '185.239.238.179',
@@ -29,6 +30,7 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    DatadumpService
   ],
   bootstrap: [AppComponent]
 })
