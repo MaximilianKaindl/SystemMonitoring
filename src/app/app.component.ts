@@ -38,14 +38,14 @@ export class AppComponent implements OnInit {
       this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
 
-    this.mqttService.observe("systemInfo").subscribe((message: IMqttMessage) => {
+    this.mqttService.observe("systemInfo").subscribe((message: IMqttMessage) => { 
 
       let infos: SystemInfo = JSON.parse(message.payload.toString());
 
-      if(this.appPages.find(p => p.title == infos.id) == undefined) {
+      if(this.appPages.find(p => p.title == infos.Id) == undefined) {
         this.appPages.push({
-          title: infos.id,
-          url: '/folder/' + infos.id,
+          title: infos.Id,
+          url: '/folder/' + infos.Id,
           icon: 'desktop' 
         });
       }

@@ -1,5 +1,5 @@
 export interface SystemInfo {
-    id: string;
-    cpu: string;
-    ram: string;
+    Id: string;
+    Cpu: string;
+    Ram: string;
 }
