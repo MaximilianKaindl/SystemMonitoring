@@ -6,7 +6,7 @@ import { SystemInfo } from '../contracts/systeminfo';
 })
 export class DatadumpService {
 
-  public data: Array<SystemInfo> = new Array<SystemInfo>();
+  public data: Map<string, SystemInfo> = new Map<string, SystemInfo>();
 
   constructor() { }
 }

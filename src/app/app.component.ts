@@ -52,10 +52,10 @@ export class AppComponent implements OnInit {
         });
       }
 
-      let systemInfo = this.datadump.data.find(s => s.Id == infos.Id)
+      let systemInfo = this.datadump.data.get(infos.Id);
 
       if(systemInfo == undefined)
-        this.datadump.data.push(infos);
+        this.datadump.data.set(infos.Id,infos);
       else {
         systemInfo.Cpu = infos.Cpu;
         systemInfo.Ram = infos.Ram;
