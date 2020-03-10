@@ -1,3 +1,4 @@
 export interface Ram {
-    Used: Number
+    Used: Number;
+    Max: Number;
 }
