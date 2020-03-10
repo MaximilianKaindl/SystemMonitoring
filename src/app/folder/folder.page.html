@@ -15,7 +15,47 @@
   </ion-header>
 
   <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Cpu: {{systemInfo.Cpu}} Ram: {{systemInfo.Ram}}</p>
+    <ion-card>
+      <ion-card-header>
+        <ion-toolbar>
+          <ion-icon size="large" name="hardware-chip-outline" ></ion-icon>
+          <ion-title>
+            CPU
+          </ion-title>
+        </ion-toolbar>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-icon name="stats-chart-outline"></ion-icon>
+          <ion-label>Utilisation</ion-label>
+          <ion-text slot="end">{{systemInfo.Cpu}}%</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="timer-outline"></ion-icon>
+          <ion-label>Clock Speed</ion-label>
+          <ion-text slot="end">0 GHz</ion-text>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card>
+      <ion-card-header>
+        <ion-toolbar>
+          <ion-icon size="large"name="pie-chart-outline"></ion-icon>
+          <ion-title>
+            RAM
+          </ion-title>
+        </ion-toolbar>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item>
+          <ion-icon name="stats-chart-outline"></ion-icon>
+          <ion-label>Utilisation</ion-label>
+          <ion-text slot="end">{{systemInfo.Ram}} Mb</ion-text>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>
