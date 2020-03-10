@@ -1,5 +1,8 @@
+import { Cpu } from './cpu';
+import { Ram } from './ram';
+
 export interface SystemInfo {
     Id: string;
-    Cpu: string;
-    Ram: string;
+    Cpu: Cpu;
+    Ram: Ram;
 }

@@ -57,8 +57,8 @@ export class AppComponent implements OnInit {
       if(systemInfo == undefined)
         this.datadump.data.set(infos.Id,infos);
       else {
-        systemInfo.Cpu = infos.Cpu;
-        systemInfo.Ram = infos.Ram;
+        systemInfo.Cpu = { ...infos.Cpu }
+        systemInfo.Ram = { ...infos.Ram }
       }
     });
   }
