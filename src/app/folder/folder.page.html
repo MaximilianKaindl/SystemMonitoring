@@ -26,17 +26,17 @@
         <ion-item>
           <ion-icon name="stats-chart-outline"></ion-icon>
           <ion-label>Utilisation</ion-label>
-          <ion-text slot="end">{{systemInfo.Cpu.Utilisation}}%</ion-text>
+          <ion-text slot="end">{{measurement.systemInfo.Cpu.Utilisation}}%</ion-text>
         </ion-item>
         <ion-item>
           <ion-icon name="timer-outline"></ion-icon>
           <ion-label>Clock Speed</ion-label>
-          <ion-text slot="end">{{systemInfo.Cpu.Currentclock}} GHz</ion-text>
+          <ion-text slot="end">{{measurement.systemInfo.Cpu.Currentclock}} GHz</ion-text>
         </ion-item>
         <ion-item>
           <ion-icon name="timer-outline"></ion-icon>
           <ion-label>Baseclock</ion-label>
-          <ion-text slot="end">{{systemInfo.Cpu.Baseclock}} GHz</ion-text>
+          <ion-text slot="end">{{measurement.systemInfo.Cpu.Baseclock}} GHz</ion-text>
         </ion-item>
       </ion-card-content>
     </ion-card>
@@ -55,12 +55,12 @@
         <ion-item>
           <ion-icon name="stats-chart-outline"></ion-icon>
           <ion-label>Utilisation</ion-label>
-          <ion-text slot="end">{{systemInfo.Ram.Used}} Mb</ion-text>
+          <ion-text slot="end">{{measurement.systemInfo.Ram.Used}} Mb</ion-text>
         </ion-item>
         <ion-item>
           <ion-icon name="stats-chart-outline"></ion-icon>
           <ion-label>Space</ion-label>
-          <ion-text slot="end">{{systemInfo.Ram.Max}} Mb</ion-text>
+          <ion-text slot="end">{{measurement.systemInfo.Ram.Max}} Mb</ion-text>
         </ion-item>
       </ion-card-content>
     </ion-card>
