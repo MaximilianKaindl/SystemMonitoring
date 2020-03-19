@@ -52,13 +52,13 @@ export class AppComponent implements OnInit {
         });
       }
 
-      let systemInfo = this.datadump.data.get(infos.Id);
+      let measurement = this.datadump.data.get(infos.Id);
 
-      if(systemInfo == undefined)
-        this.datadump.data.set(infos.Id,infos);
+      if(measurement == undefined)
+        this.datadump.data.set(infos.Id,measurement);
       else {
-        systemInfo.Cpu = { ...infos.Cpu }
-        systemInfo.Ram = { ...infos.Ram }
+        measurement.systemInfo.Cpu = { ...infos.Cpu }
+        measurement.systemInfo.Ram = { ...infos.Ram }
       }
     });
   }
