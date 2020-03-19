@@ -2,7 +2,7 @@ import { Cpu } from './cpu';
 import { Ram } from './ram';
 
 export interface SystemInfo {
-    Id: string;
+    Name: string;
     Cpu: Cpu;
     Ram: Ram;
 }

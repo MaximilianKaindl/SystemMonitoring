@@ -45,18 +45,18 @@ export class AppComponent implements OnInit {
 
       let infos: Measurement = JSON.parse(message.payload.toString());
 
-      if(this.appPages.find(p => p.title == infos.systemInfo.Id) == undefined) {
+      if(this.appPages.find(p => p.title == infos.systemInfo.Name) == undefined) {
         this.appPages.push({
-          title: infos.systemInfo.Id,
-          url: '/folder/' + infos.systemInfo.Id,
+          title: infos.systemInfo.Name,
+          url: '/folder/' + infos.systemInfo.Name,
           icon: 'desktop' 
         });
       }
 
-      let measurement = this.datadump.data.get(infos.systemInfo.Id);
+      let measurement = this.datadump.data.get(infos.systemInfo.Name);
 
       if(measurement == undefined)
-        this.datadump.data.set(infos.systemInfo.Id,measurement);
+        this.datadump.data.set(infos.systemInfo.Name,measurement);
       else {
         measurement.systemInfo.Cpu = { ...infos.systemInfo.Cpu }
         measurement.systemInfo.Ram = { ...infos.systemInfo.Ram }
