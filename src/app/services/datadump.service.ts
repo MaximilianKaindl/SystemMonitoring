@@ -7,7 +7,7 @@ import { Measurement } from '../contracts/measurement';
 })
 export class DatadumpService {
 
-  public data: Map<string, Measurement> = new Map<string, Measurement>();
+  public data: Map<string, SystemInfo> = new Map<string, SystemInfo>();
 
   constructor() { }
 }

@@ -7,7 +7,6 @@ import { MqttService, IMqttMessage } from 'ngx-mqtt';
 import { SystemInfo } from './contracts/systeminfo';
 import { JsonPipe } from '@angular/common';
 import { DatadumpService } from './services/datadump.service';
-import { Measurement } from './contracts/measurement';
 
 @Component({
   selector: 'app-root',
@@ -43,23 +42,23 @@ export class AppComponent implements OnInit {
 
     this.mqttService.observe("systemInfo").subscribe((message: IMqttMessage) => { 
 
-      let infos: Measurement = JSON.parse(message.payload.toString());
+      let infos: SystemInfo = JSON.parse(message.payload.toString());
 
-      if(this.appPages.find(p => p.title == infos.systemInfo.Name) == undefined) {
+      if(this.appPages.find(p => p.title == infos.Name) == undefined) {
         this.appPages.push({
-          title: infos.systemInfo.Name,
-          url: '/folder/' + infos.systemInfo.Name,
+          title: infos.Name,
+          url: '/folder/' + infos.Name,
           icon: 'desktop' 
         });
       }
 
-      let measurement = this.datadump.data.get(infos.systemInfo.Name);
+      let systemInfo = this.datadump.data.get(infos.Name);
 
-      if(measurement == undefined)
-        this.datadump.data.set(infos.systemInfo.Name,measurement);
+      if(systemInfo == undefined)
+        this.datadump.data.set(infos.Name,systemInfo);
       else {
-        measurement.systemInfo.Cpu = { ...infos.systemInfo.Cpu }
-        measurement.systemInfo.Ram = { ...infos.systemInfo.Ram }
+        systemInfo.Cpu = { ...infos.Cpu }
+        systemInfo.Ram = { ...infos.Ram }
       }
     });
   }

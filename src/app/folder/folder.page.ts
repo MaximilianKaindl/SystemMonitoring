@@ -11,14 +11,14 @@ import { Measurement } from '../contracts/measurement';
 })
 export class FolderPage implements OnInit {
   public folder: string;
-  public measurement: Measurement;
+  public systemInfo: SystemInfo;
 
   constructor(private activatedRoute: ActivatedRoute, private datadump: DatadumpService) { }
 
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
 
-    this.measurement = this.datadump.data.get(this.folder);
+    this.systemInfo = this.datadump.data.get(this.folder);
   }
 
 }
