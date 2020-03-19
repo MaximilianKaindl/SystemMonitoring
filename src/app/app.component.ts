@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
 
     this.mqttService.observe("systemInfo").subscribe((message: IMqttMessage) => { 
 
-      let infos: SystemInfo = JSON.parse(message.payload.toString());
+      let infos: SystemInfo = (JSON.parse(message.payload.toString())).SystemInfo;
 
       if(this.appPages.find(p => p.title == infos.Name) == undefined) {
         this.appPages.push({
@@ -55,7 +55,7 @@ export class AppComponent implements OnInit {
       let systemInfo = this.datadump.data.get(infos.Name);
 
       if(systemInfo == undefined)
-        this.datadump.data.set(infos.Name,systemInfo);
+        this.datadump.data.set(infos.Name,infos);
       else {
         systemInfo.Cpu = { ...infos.Cpu }
         systemInfo.Ram = { ...infos.Ram }

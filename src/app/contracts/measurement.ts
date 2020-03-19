@@ -2,6 +2,6 @@ import { SystemInfo } from './systeminfo';
 
 export class Measurement
 {
-    systemInfo: SystemInfo;
+    SystemInfo: SystemInfo;
     Timestamp : Date;
 }
