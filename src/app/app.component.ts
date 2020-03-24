@@ -61,5 +61,13 @@ export class AppComponent implements OnInit {
         systemInfo.Ram = { ...infos.Ram }
       }
     });
+    this.mqttService.observe("connectionClosed").subscribe((message:IMqttMessage) => {
+        let name : string = (JSON.parse(message.payload.toString())).Name;
+        if(this.appPages.find(p => p.title == name)){
+          let index = this.appPages.findIndex(p => p.title == name);
+          this.appPages.splice(index,1);
+        }
+        this.datadump.data.delete(name);
+    });
   }
 }
