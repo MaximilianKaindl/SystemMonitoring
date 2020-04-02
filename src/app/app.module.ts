@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MqttModule, IMqttServiceOptions } from 'ngx-mqtt';
 import { DatadumpService } from './services/datadump.service';
+import { HttpClientModule } from '@angular/common/http';
+import { StatisikshttpService } from './services/statisikshttp.service';
 
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: '185.239.238.179',
@@ -22,6 +24,7 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   entryComponents: [],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     MqttModule.forRoot(MQTT_SERVICE_OPTIONS)
@@ -30,7 +33,8 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    DatadumpService
+    DatadumpService,
+    StatisikshttpService
   ],
   bootstrap: [AppComponent]
 })
