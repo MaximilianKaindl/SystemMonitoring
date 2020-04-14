@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Chart } from "chart.js";
 
 @Component({
@@ -6,7 +6,8 @@ import { Chart } from "chart.js";
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss'],
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent implements AfterViewInit {
+
   @Input()
   public title: string;
 
@@ -19,7 +20,7 @@ export class ChartComponent implements OnInit {
 
   private lineChart: Chart;
 
-  ngOnInit() {
+  ngAfterViewInit(): void {
     this.createLineChart();
   }
 
