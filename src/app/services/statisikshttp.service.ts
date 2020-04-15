@@ -9,7 +9,7 @@ export class StatisikshttpService {
 
   constructor(private http: HttpClient) { }
 
-  basePath: string = 'https://localhost:5001/api/Statistics'
+  basePath: string = 'https://systemmonitoringlogger.azurewebsites.net/api/Statistics'
 
   getStatistiksForDevice(deviceName: string, pageIndex: number, pageSize: number) {
     let params = new HttpParams();

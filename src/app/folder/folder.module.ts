@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { FolderPageRoutingModule } from './folder-routing.module';
 
 import { FolderPage } from './folder.page';
-import { ChartComponent } from '../chart/chart.component';
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
 
 @NgModule({
