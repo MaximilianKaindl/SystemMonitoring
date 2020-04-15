@@ -11,7 +11,7 @@ let mainWindow = null;
 let splashScreen = null;
 
 //Change this if you do not wish to have a splash screen
-let useSplashScreen = true;
+let useSplashScreen = false;
 
 // Create simple menu for easy devtools access, and for demo
 const menuTemplateDev = [
@@ -47,6 +47,9 @@ async function createWindow () {
     Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplateDev));
     // If we are developers we might as well open the devtools by default.
     mainWindow.webContents.openDevTools();
+  }
+  else{
+    Menu.setApplicationMenu(Menu.buildFromTemplate([]));
   }
 
   if(useSplashScreen) {
