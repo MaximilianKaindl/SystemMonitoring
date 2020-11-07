@@ -28,6 +28,8 @@
     "@ionic/angular": "^5.0.0",
     "chart.js": "^2.9.3",
     "core-js": "^2.5.4",
+    "firebase-admin": "^9.2.0",
+    "firebase-functions": "^3.11.0",
     "ngx-mqtt": "^6.13.2",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
