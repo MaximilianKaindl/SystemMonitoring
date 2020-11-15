@@ -8,6 +8,8 @@ import { SystemInfo } from './contracts/systeminfo';
 import { JsonPipe } from '@angular/common';
 import { DatadumpService } from './services/datadump.service';
 import { Measurement } from './contracts/measurement';
+import { PubsubService } from './services/pubsub.service';
+
 
 @Component({
   selector: 'app-root',
@@ -17,23 +19,24 @@ import { Measurement } from './contracts/measurement';
 export class AppComponent implements OnInit {
   public selectedIndex = 0;
   public appPages = [];
-
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private mqttService: MqttService,
-    private datadump: DatadumpService
+    private datadump: DatadumpService,
+    private pubsubService : PubsubService
   ) {
     this.initializeApp();
   }
-
+  
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
+  
 
   ngOnInit() {
     const path = window.location.pathname.split('folder/')[1];
