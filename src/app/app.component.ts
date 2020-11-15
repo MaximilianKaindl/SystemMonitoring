@@ -9,6 +9,7 @@ import { JsonPipe } from '@angular/common';
 import { DatadumpService } from './services/datadump.service';
 import { Measurement } from './contracts/measurement';
 import { PubsubService } from './services/pubsub.service';
+import { StatisikshttpService } from './services/statisikshttp.service';
 
 
 @Component({
@@ -24,8 +25,7 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private mqttService: MqttService,
-    private datadump: DatadumpService,
-    private pubsubService : PubsubService
+    private datadump: DatadumpService
   ) {
     this.initializeApp();
   }
