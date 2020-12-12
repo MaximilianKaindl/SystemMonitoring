@@ -1,6 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { Measurement } from '../contracts/measurement';
+import { DatadumpService } from './datadump.service';
 // Imports the Google Cloud client library
 const {PubSub} = require('@google-cloud/pubsub');
+
+const admin = require('firebase-admin');
+let messageCount = 0;
+const messageHandler = message => {
+  console.log(`Received message ${message.id}:`);
+  console.log(`\tData: ${message.data}`);
+  console.log(`\tAttributes: ${message.attributes}`);
+  messageCount += 1;
+  message.ack();
+};
 
 const serviceAccount = {
   type: "service_account",
@@ -13,16 +25,15 @@ const serviceAccount = {
   token_uri: "https://oauth2.googleapis.com/token",
   auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
   client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/admin-381%40systemmonitoring-294918.iam.gserviceaccount.com"
-}
-;
-const admin = require('firebase-admin');
+};
 
 @Injectable({
   providedIn: 'root'
 })
-export class PubsubService {
+export class PubsubService implements OnInit {
+  private pubSubClient = new PubSub();
 
-  constructor() {
+  constructor(private datadump: DatadumpService) {
     process.env.GCLOUD_PROJECT = 'systemmonitoring-294918';
 
     admin.initializeApp({
@@ -31,19 +42,29 @@ export class PubsubService {
     this.listenForMessages();
   }
 
-  pubSubClient = new PubSub();
+  ngOnInit() {
+  }
 
   listenForMessages() {
     const subscription = this.pubSubClient.subscription('adminpull');
-    let messageCount = 0;
-    const messageHandler = message => {
-      console.log(`Received message ${message.id}:`);
-      console.log(`\tData: ${message.data}`);
-      console.log(`\tAttributes: ${message.attributes}`);
-      messageCount += 1;
-      message.ack();
-    };
     subscription.on('message', messageHandler).subscribe(mes =>{
+      let infos: Measurement = (JSON.parse(mes.payload.toString()));
+      this.datadump.pushFolder(infos);
+
+      let measurement = this.datadump.data.get(infos.SystemInfo.Name);
+      if(measurement == undefined)
+        this.datadump.data.set(infos.SystemInfo.Name,infos);
+      else {
+        measurement.Timestamp = infos.Timestamp
+        measurement.SystemInfo = { ...infos.SystemInfo }
+      }
+    });
+
+    const conectionClosedSubscription = this.pubSubClient.subscription('connectionClosed');
+    conectionClosedSubscription.on('message', messageHandler).subscribe(mes =>{
+      let name : string = (JSON.parse(mes.payload.toString())).Name;
+      this.datadump.deleteFolder(name);
+      this.datadump.data.delete(name);
     });
   }
 }

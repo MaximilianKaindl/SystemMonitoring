@@ -1,0 +1,35 @@
+<ion-card>
+  <ion-card-header>
+    <ion-item>
+      <ion-icon size="large" name="hardware-chip-outline" ></ion-icon>
+      <ion-card-title>Room</ion-card-title>
+    </ion-item>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-item>
+      <ion-icon name="stats-chart-outline"></ion-icon>
+      <ion-label>Humidity</ion-label>
+      <ion-text slot="end">{{measurement.SystemInfo.Humidity}}%</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="contract-outline"></ion-icon>
+      <ion-label>Airpressure</ion-label>
+      <ion-text slot="end">{{measurement.SystemInfo.Airpressure}}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="thermometer-outline"></ion-icon>
+      <ion-label>Temperature</ion-label>
+      <ion-text slot="end">{{measurement.SystemInfo.Temperature}}°C</ion-text>
+    </ion-item>
+  </ion-card-content>
+</ion-card>
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Humidity</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ngx-chartjs [data]="chartData" type="line" [options]="chartOptions"></ngx-chartjs>
+  </ion-card-content>
+</ion-card>

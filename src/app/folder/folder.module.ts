@@ -8,6 +8,7 @@ import { FolderPageRoutingModule } from './folder-routing.module';
 
 import { FolderPage } from './folder.page';
 import { ChartjsModule } from '@ctrl/ngx-chartjs';
+import { SystemInfoComponent } from '../components/system-info/system-info.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { ChartjsModule } from '@ctrl/ngx-chartjs';
     FolderPageRoutingModule,
     ChartjsModule
   ],
-  declarations: [FolderPage]
+  declarations: [FolderPage,SystemInfoComponent]
 })
 export class FolderPageModule {}

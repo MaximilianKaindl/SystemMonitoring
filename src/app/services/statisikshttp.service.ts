@@ -25,5 +25,4 @@ export class StatisikshttpService {
   getStatistiksForDeviceCloudFunction() {
     return this.http.get<Measurement[]>(this.cloudFunctionPath);
   }
-  
 }
