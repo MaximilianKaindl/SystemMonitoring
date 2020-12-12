@@ -30,6 +30,9 @@ export class MqttService{
         this.datadump.deleteFolder(name);
         this.datadump.data.delete(name);
     });
+    this.mqttService.observe("raspberryInfo").subscribe((message:IMqttMessage) => {
+      console.log(message)
+    });
   }
 
 }
