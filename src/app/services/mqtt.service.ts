@@ -31,7 +31,17 @@ export class MqttService{
         this.datadump.data.delete(name);
     });
     this.mqttService.observe("raspberryInfo").subscribe((message:IMqttMessage) => {
-      console.log(message)
+      let infos: Measurement = (JSON.parse(message.payload.toString()));
+      this.datadump.pushFolder(infos);
+
+      let measurement = this.datadump.data.get(infos.SystemInfo.Name);
+
+      if(measurement == undefined)
+        this.datadump.data.set(infos.SystemInfo.Name,infos);
+      else {
+        measurement.Timestamp = infos.Timestamp
+        measurement.SystemInfo = { ...infos.SystemInfo }
+      }
     });
   }
 

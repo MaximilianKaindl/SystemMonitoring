@@ -11,18 +11,17 @@ export class StatisikshttpService {
 
   basePath: string = 'https://systemmonitoringlogger.azurewebsites.net/api/Statistics';
   cloudFunctionPath : string ='https://us-central1-systemmonitoring-294918.cloudfunctions.net/getMeasurements';
+  cloudRaspberryFunctionPath : string ='https://us-central1-systemmonitoring-294918.cloudfunctions.net/getRaspberryMeasurements';
 
   getStatistiksForDevice(deviceName: string, pageIndex: number, pageSize: number) {
-    // let params = new HttpParams();
-
-    // params.append('pageIndex', pageIndex.toString());
-    // params.append('pageSize', pageSize.toString());
-
-    // return this.http.get<Measurement[]>(this.basePath + '/' + deviceName, {params: params});
-    return this.getStatistiksForDeviceCloudFunction();
+    let params = new HttpParams();
+    params.append('deviceName', pageIndex.toString());
+    return this.http.get<Measurement[]>(this.cloudFunctionPath, { params : params});
   }
 
-  getStatistiksForDeviceCloudFunction() {
-    return this.http.get<Measurement[]>(this.cloudFunctionPath);
+  getStatistiksForRaspberry(deviceName: string, pageIndex: number, pageSize: number) {
+    let params = new HttpParams();
+    params.append('deviceName', pageIndex.toString());
+    return this.http.get<Measurement[]>(this.cloudRaspberryFunctionPath, { params : params});
   }
 }

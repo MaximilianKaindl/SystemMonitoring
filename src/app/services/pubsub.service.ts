@@ -39,13 +39,13 @@ export class PubsubService implements OnInit {
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccount)
     });
-    this.listenForMessages();
+    this.observe();
   }
 
   ngOnInit() {
   }
 
-  listenForMessages() {
+  observe() {
     const subscription = this.pubSubClient.subscription('adminpull');
     subscription.on('message', messageHandler).subscribe(mes =>{
       let infos: Measurement = (JSON.parse(mes.payload.toString()));

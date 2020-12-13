@@ -18,9 +18,10 @@ export class RasperryInfoComponent implements OnInit {
 
   private history: Measurement[] = new Array<Measurement>();
 
-  public chartData: ChartData;
+  public humChartData: ChartData;
+  public temperatureChartData: ChartData;
 
-  public chartOptions: ChartOptions = {
+  public temperatureChartOptions: ChartOptions = {
     legend: {
       display: false
     },
@@ -32,7 +33,30 @@ export class RasperryInfoComponent implements OnInit {
           },
           scaleLabel: {
             display: true,
-            labelString: "% of Cpu used"
+            labelString: "° Celsius"
+          }
+        }
+      ],
+      xAxes: [{
+        ticks: {
+          display: false
+        }
+      }]
+    }
+  };
+  public humChartOptions: ChartOptions = {
+    legend: {
+      display: false
+    },
+    scales: {
+      yAxes: [{
+          ticks: {
+            min: 0,
+            max: 100
+          },
+          scaleLabel: {
+            display: true,
+            labelString: "% Humidity"
           }
         }
       ],
@@ -52,7 +76,7 @@ export class RasperryInfoComponent implements OnInit {
     if(this.measurement == undefined)
       return;
 
-    if(this.measurement.Timestamp != undefined && this.chartData != undefined  && this.oldTimestamp != this.measurement.Timestamp)
+    if(this.measurement.Timestamp != undefined && this.humChartData != undefined  && this.temperatureChartData != undefined && this.oldTimestamp != this.measurement.Timestamp)
     {
       this.history.push({...this.measurement});
       if(this.history.length > this.maxChartDisplayValues)
@@ -64,14 +88,14 @@ export class RasperryInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.statistiksService.getStatistiksForDevice(this.folderInput,0,this.maxChartDisplayValues).subscribe(data => {
+    this.statistiksService.getStatistiksForRaspberry(this.folderInput,0,this.maxChartDisplayValues).subscribe(data => {
         this.history = data
       });
     this.buildChartData();
   }
 
   private buildChartData(){
-    this.chartData = {
+    this.humChartData = {
       labels: this.history.map(m => m.Timestamp),
       datasets: [
         {
@@ -93,6 +117,32 @@ export class RasperryInfoComponent implements OnInit {
           pointRadius: 1,
           pointHitRadius: 10,
           data: this.history.map(m => m.SystemInfo.Humidity),
+          spanGaps: false
+        }
+      ]
+    };
+    this.temperatureChartData = {
+      labels: this.history.map(m => m.Timestamp),
+      datasets: [
+        {
+          label: "Temperature",
+          fill: false,
+          backgroundColor: "rgba(75,192,192,0.4)",
+          borderColor: "rgba(75,192,192,1)",
+          borderCapStyle: "butt",
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: "miter",
+          pointBorderColor: "rgba(75,192,192,1)",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "rgba(75,192,192,1)",
+          pointHoverBorderColor: "rgba(220,220,220,1)",
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: this.history.map(m => m.SystemInfo.Temperature),
           spanGaps: false
         }
       ]

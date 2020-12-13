@@ -14,6 +14,7 @@ import { StatisikshttpService } from '../services/statisikshttp.service';
 export class FolderPage implements OnInit {  
   public folder: string;
   public measurement: Measurement;
+  protected isRasperry : boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private datadump: DatadumpService) { }
 
@@ -21,7 +22,4 @@ export class FolderPage implements OnInit {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
     this.measurement = this.datadump.data.get(this.folder);
   }
-
-  
-
 }

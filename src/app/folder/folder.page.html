@@ -5,11 +5,11 @@
     </ion-buttons>
 
     <ion-item>
-      <ion-icon size="large" name="desktop-outline" ></ion-icon>
       <ion-text> {{folder}}</ion-text>
     </ion-item>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
-  <app-system-info [folderInput]="folder" [measurement]="measurement"></app-system-info>
+  <app-system-info *ngIf="measurement.SystemInfo.Cpu !== undefined" [folderInput]="folder" [measurement]="measurement"></app-system-info>
+  <app-rasperry-info *ngIf="measurement.SystemInfo.Cpu === undefined" [folderInput]="folder" [measurement]="measurement"></app-rasperry-info>
 </ion-content>

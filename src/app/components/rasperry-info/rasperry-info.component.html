@@ -1,7 +1,7 @@
 <ion-card>
   <ion-card-header>
     <ion-item>
-      <ion-icon size="large" name="hardware-chip-outline" ></ion-icon>
+      <ion-icon size="large" name="home-outline" ></ion-icon>
       <ion-card-title>Room</ion-card-title>
     </ion-item>
   </ion-card-header>
@@ -15,7 +15,7 @@
     <ion-item>
       <ion-icon name="contract-outline"></ion-icon>
       <ion-label>Airpressure</ion-label>
-      <ion-text slot="end">{{measurement.SystemInfo.Airpressure}}</ion-text>
+      <ion-text slot="end">{{measurement.SystemInfo.Airpressure}} hPa</ion-text>
     </ion-item>
     <ion-item>
       <ion-icon name="thermometer-outline"></ion-icon>
@@ -30,6 +30,14 @@
     <ion-card-title>Humidity</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <ngx-chartjs [data]="chartData" type="line" [options]="chartOptions"></ngx-chartjs>
+    <ngx-chartjs [data]="humChartData" type="line" [options]="humChartOptions"></ngx-chartjs>
+  </ion-card-content>
+</ion-card>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Temperature</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ngx-chartjs [data]="temperatureChartData" type="line" [options]="temperatureChartOptions"></ngx-chartjs>
   </ion-card-content>
 </ion-card>
