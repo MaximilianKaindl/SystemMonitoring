@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "electron:start": "electron ./",
-    "start":"env ELECTRON_IS_DEV=0 electron ./"
+    "start": "env ELECTRON_IS_DEV=0 electron ./"
   },
   "dependencies": {
     "@capacitor/electron": "^2.0.1",
-    "electron-is-dev": "^1.1.0"
+    "electron-is-dev": "^1.1.0",
+    "electron-packager": "^15.2.0"
   },
   "devDependencies": {
     "electron": "^8.2.2"

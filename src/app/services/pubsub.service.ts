@@ -60,6 +60,20 @@ export class PubsubService implements OnInit {
       }
     });
 
+    const raspberrySubscription = this.pubSubClient.subscription('raspberry');
+    raspberrySubscription.on('message', messageHandler).subscribe(mes =>{
+      let infos: Measurement = (JSON.parse(mes.payload.toString()));
+      this.datadump.pushFolder(infos);
+
+      let measurement = this.datadump.data.get(infos.SystemInfo.Name);
+      if(measurement == undefined)
+        this.datadump.data.set(infos.SystemInfo.Name,infos);
+      else {
+        measurement.Timestamp = infos.Timestamp
+        measurement.SystemInfo = { ...infos.SystemInfo }
+      }
+    });
+
     const conectionClosedSubscription = this.pubSubClient.subscription('connectionClosed');
     conectionClosedSubscription.on('message', messageHandler).subscribe(mes =>{
       let name : string = (JSON.parse(mes.payload.toString())).Name;
