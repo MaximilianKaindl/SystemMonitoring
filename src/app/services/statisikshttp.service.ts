@@ -9,7 +9,6 @@ export class StatisikshttpService {
 
   constructor(private http: HttpClient) { }
 
-  basePath: string = 'https://systemmonitoringlogger.azurewebsites.net/api/Statistics';
   cloudFunctionPath : string ='https://us-central1-systemmonitoring-294918.cloudfunctions.net/getMeasurements';
   cloudRaspberryFunctionPath : string ='https://us-central1-systemmonitoring-294918.cloudfunctions.net/getRaspberryMeasurements';
 

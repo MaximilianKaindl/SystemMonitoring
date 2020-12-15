@@ -4,6 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { DatadumpService } from './services/datadump.service';
 import { MqttService } from './services/mqtt.service';
+import { PubsubService } from './services/pubsub.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     protected datadump: DatadumpService,
-    private pubSub : MqttService
+    private pubSub : PubsubService
   ) {
     this.initializeApp();
   }
